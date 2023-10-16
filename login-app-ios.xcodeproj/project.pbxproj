@@ -17,6 +17,8 @@
 		09D20F582ADDA6CB0026026E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D20F572ADDA6CB0026026E /* LoginView.swift */; };
 		09D20F5D2ADDA9150026026E /* SColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D20F5C2ADDA9150026026E /* SColors.swift */; };
 		09D20F5F2ADDADCA0026026E /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D20F5E2ADDADCA0026026E /* ButtonStyles.swift */; };
+		09D20F612ADDC4080026026E /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D20F602ADDC4080026026E /* LoginViewModel.swift */; };
+		09D20F652ADDCD5C0026026E /* LoggedHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D20F642ADDCD5C0026026E /* LoggedHome.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		09D20F572ADDA6CB0026026E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		09D20F5C2ADDA9150026026E /* SColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SColors.swift; sourceTree = "<group>"; };
 		09D20F5E2ADDADCA0026026E /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
+		09D20F602ADDC4080026026E /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		09D20F642ADDCD5C0026026E /* LoggedHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedHome.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +143,8 @@
 			isa = PBXGroup;
 			children = (
 				09D20F572ADDA6CB0026026E /* LoginView.swift */,
+				09D20F602ADDC4080026026E /* LoginViewModel.swift */,
+				09D20F642ADDCD5C0026026E /* LoggedHome.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -284,9 +290,11 @@
 			files = (
 				09D20F582ADDA6CB0026026E /* LoginView.swift in Sources */,
 				09D20F5F2ADDADCA0026026E /* ButtonStyles.swift in Sources */,
+				09D20F612ADDC4080026026E /* LoginViewModel.swift in Sources */,
 				0955D3B02AD7682A00E973AF /* ContentView.swift in Sources */,
 				09D20F5D2ADDA9150026026E /* SColors.swift in Sources */,
 				0955D3AE2AD7682A00E973AF /* login_app_iosApp.swift in Sources */,
+				09D20F652ADDCD5C0026026E /* LoggedHome.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
