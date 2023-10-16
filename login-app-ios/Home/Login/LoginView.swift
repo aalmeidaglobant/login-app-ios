@@ -12,66 +12,71 @@ struct LoginView: View {
     
     var body: some View {
         if viewModel.state != .success {
-            GeometryReader { proxy in
+            VStack {
+                Spacer()
                 VStack(alignment: .leading, spacing: 20) {
-                    VStack(alignment: .center) {
-                        Image("logo-stone", bundle: nil)
-                            .frame(width: proxy.size.width - 60, height: 40)
+                    CentralizedLogo()
+                        .padding(.top, 10)
+                    if viewModel.state == .failure {
+                        Text("Usuário ou senha incorretos!")
+                            .foregroundStyle(.red)
                     }
                     UsernameField(username: $viewModel.username)
                     PasswordField(password: $viewModel.password)
-                    Button("Esqueci minha senha >", action: {})
+                    Link("Esqueci minha senha >", destination: URL(string: "https://conta.stone.com.br/nao-consigo-entrar")!)
                         .buttonStyle(SPlainLinkButton())
-                    Button("Entrar") {
-                        Task { await viewModel.verify() }
-                    }
-                    .frame(width: proxy.size.width - 60)
-                    .padding(.vertical, 10)
-                    .foregroundStyle(Color.white)
-                    .background {
-                        RoundedRectangle(cornerRadius: 5)
-                            .foregroundStyle(Color.green)
+                    EntrarButton {
+                       Task { await viewModel.verify() }
                     }
                 }
-                .padding(.horizontal, 15)
-                .frame(
-                    width: proxy.size.width - 30,
-                    height: 350,
-                    alignment: .center
-                )
+                .padding(.all, 15)
                 .background {
                     RoundedRectangle(cornerRadius: 10)
                         .foregroundStyle(.white)
                 }
-                .position(CGPoint(
-                    x: proxy.frame(in: .global).midX,
-                    y: proxy.frame(in: .global).midY
-                ))
+                .padding(.horizontal, 15)
                 HStack {
                     Text("Ainda não é stone?")
-                    Button("Seja stone! >", action: {})
+                    Link("Seja stone! >", destination: URL(string: "https://www.stone.com.br/adquira/")!)
                         .buttonStyle(SPlainLinkButton())
                 }
-                .position(CGPoint(
-                    x: proxy.frame(in: .global).midX,
-                    y: proxy.frame(in: .global).midY + 195
-                ))
+                Spacer()
             }
             .background {
                 Color.gray.opacity(0.1)
             }
             .ignoresSafeArea(.all)
-            .onChange(of: viewModel.state) { _, newValue in
-                if newValue == .success {
-                    //
-                }
-            }
         } else {
-            LoggedHome()
+            LoggedView()
         }
     }
 }
 
+
+fileprivate struct EntrarButton: View {
+    let action: () -> Void
+    
+    var body: some View {
+        Button("Entrar", action: action)
+        .padding(.vertical, 10)
+        .frame(minWidth: 1, maxWidth: .infinity)
+        .foregroundStyle(Color.white)
+        .background {
+            RoundedRectangle(cornerRadius: 5)
+                .foregroundStyle(Color.green)
+        }
+    }
+}
+
+fileprivate struct CentralizedLogo: View {
+    var body: some View {
+        HStack {
+            Spacer()
+            Image("logo-stone", bundle: nil)
+            Spacer()
+        }
+    }
+}
 fileprivate struct UsernameField: View {
     @Binding var username: String
     
@@ -79,6 +84,8 @@ fileprivate struct UsernameField: View {
         VStack(alignment: .leading, spacing: 5) {
             Text("E-mail ou CPF")
             TextField("Digite seu e-mail ou CPF", text: $username)
+                .autocorrectionDisabled()
+                .textInputAutocapitalization(.never)
                 .padding(.all, 10)
                 .overlay {
                     RoundedRectangle(cornerRadius: 5)
@@ -94,7 +101,9 @@ fileprivate struct PasswordField: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             Text("Senha")
-            TextField("Digite sua senha", text: $password)
+            SecureField("Digite sua senha", text: $password)
+                .autocorrectionDisabled()
+                .textInputAutocapitalization(.never)
                 .padding(.all, 10)
                 .overlay {
                     RoundedRectangle(cornerRadius: 5)

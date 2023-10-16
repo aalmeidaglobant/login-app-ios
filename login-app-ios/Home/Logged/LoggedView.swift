@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct LoggedHome: View {
+struct LoggedView: View {
     var body: some View {
         Text("Você está logado")
     }
 }
 
 #Preview {
-    LoggedHome()
+    LoggedView()
 }
