@@ -9,6 +9,7 @@ import Foundation
 
 class FakeAPI {
     func validateCredentials(username: String, password: String) async -> Bool {
+        try! await Task.sleep(for: .seconds(1))
         if username == "username" && password == "password" {
             return true
         } else {
@@ -18,7 +19,7 @@ class FakeAPI {
 }
 
 enum LoginViewState {
-    case success, idle, failure
+    case success, idle, failure, loading
 }
 
 @Observable
@@ -37,6 +38,7 @@ class LoginViewModel {
     
     
     func verify() async {
+        state = .loading
         let isSuccessful = await api.validateCredentials(username: username, password: password)
         state = isSuccessful ? .success : .failure
     }
