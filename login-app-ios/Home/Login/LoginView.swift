@@ -45,6 +45,22 @@ struct LoginView: View {
             .background {
                 Color.gray.opacity(0.1)
             }
+            .overlay {
+                if viewModel.state == .loading {
+                    HStack {
+                        Spacer()
+                        VStack {
+                            Spacer()
+                            ProgressView()
+                            Spacer()
+                        }
+                        Spacer()
+                    }
+                    .background {
+                        Color.gray.opacity(0.5)
+                    }
+                }
+            }
             .ignoresSafeArea(.all)
         } else {
             LoggedView()
